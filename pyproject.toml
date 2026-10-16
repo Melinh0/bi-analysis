@@ -1,0 +1,86 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bi-analysis"
+version = "0.2.0"
+description = "BI Analysis - Data extraction, RAG, and reporting platform"
+readme = "README.md"
+authors = [{name = "BI Analysis Team", email = "team@bi-analysis.com"}]
+maintainers = [{name = "BI Analysis Team", email = "team@bi-analysis.com"}]
+license = {text = "MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "selenium",
+    "pandas",
+    "python-dotenv",
+    "playwright",
+    "openai",
+    "fastapi",
+    "uvicorn[standard]",
+    "sqlalchemy",
+    "alembic",
+    "chromadb",
+    "ollama",
+    "langchain",
+    "langchain-community",
+    "langchain-ollama",
+    "pydantic",
+    "pydantic-settings",
+    "jinja2",
+    "python-multipart",
+    "aiofiles",
+    "schedule",
+    "tqdm",
+    "python-dateutil",
+    "jmespath",
+    "glob2",
+    "openpyxl",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "black",
+    "ruff",
+    "mypy",
+]
+
+[project.scripts]
+bi-web = "web.main:main"
+bi-rag = "bi_analysis.rag.pipeline:main"
+
+[tool.setuptools.packages.find]
+where = ["backend"]
+include = ["bi_analysis*", "web*"]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "black",
+    "ruff",
+    "mypy",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
